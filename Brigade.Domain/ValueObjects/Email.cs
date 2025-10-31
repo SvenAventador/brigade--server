@@ -38,6 +38,8 @@ namespace Brigade.Domain.ValueObjects
             Value = email.Trim().ToLowerInvariant();
         }
 
+        private Email() { }
+
         #region Переопределенные методы
 
         /// <summary>

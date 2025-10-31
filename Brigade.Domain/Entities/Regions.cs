@@ -25,5 +25,7 @@ namespace Brigade.Domain.Entities
             Id = Guid.NewGuid();
             Name = name;
         }
+
+        private Regions() { }
     }
 }

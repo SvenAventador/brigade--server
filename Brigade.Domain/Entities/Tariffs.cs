@@ -40,9 +40,9 @@ namespace Brigade.Domain.Entities
         /// <param name="price"> Цена тарифа. </param>
         /// <param name="durationDays"> Продолжительность действия тарифа в днях. </param>
         /// <param name="description"> Описание тарифа (необязательно). </param>
-        public Tariffs(Name name, 
-                       decimal price, 
-                       int durationDays, 
+        public Tariffs(Name name,
+                       decimal price,
+                       int durationDays,
                        string? description = null)
         {
             Guard.AgainstNullOrWhiteSpace(name, nameof(name));
@@ -55,5 +55,7 @@ namespace Brigade.Domain.Entities
             Price = price;
             DurationDays = durationDays;
         }
+
+        private Tariffs() { }
     }
 }

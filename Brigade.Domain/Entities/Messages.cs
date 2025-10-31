@@ -18,16 +18,6 @@ namespace Brigade.Domain.Entities
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Идентификатор отправителя.
-        /// </summary>
-        public Guid SenderId { get; private set; }
-
-        /// <summary>
-        /// Идентификатор чата, к которому относится сообщение.
-        /// </summary>
-        public Guid ChatId { get; private set; }
-
-        /// <summary>
         /// Текст сообщения.
         /// </summary>
         public string Text { get; private set; }
@@ -40,7 +30,31 @@ namespace Brigade.Domain.Entities
         /// <summary>
         /// Признак, был ли прочитано сообщение.
         /// </summary>
-        public bool IsRead { get; private set; } 
+        public bool IsRead { get; private set; }
+
+        #region Навигационные свойства
+
+        /// <summary>
+        /// Идентификатор отправителя.
+        /// </summary>
+        public Guid SenderId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public User? Sender { get; private set; }
+
+        /// <summary>
+        /// Идентификатор чата, к которому относится сообщение.
+        /// </summary>
+        public Guid ChatId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public Chats? Chat { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="Messages"/>.
@@ -53,8 +67,7 @@ namespace Brigade.Domain.Entities
         public Messages(Guid senderId,
                         Guid chatId,
                         string text,
-                        DateTime sendAt,
-                        bool isRead = false) 
+                        bool isRead = false)
         {
             Guard.AgainstNullOrWhiteSpace(text, nameof(text));
             Guard.Against(senderId => senderId == Guid.Empty,
@@ -70,8 +83,10 @@ namespace Brigade.Domain.Entities
             SenderId = senderId;
             ChatId = chatId;
             Text = text;
-            SendAt = sendAt;
+            SendAt = DateTime.UtcNow;
             IsRead = isRead;
         }
+
+        private Messages() { }
     }
 }

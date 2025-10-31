@@ -9,9 +9,21 @@ namespace Brigade.Domain.Entities
     public class OrderApplication
     {
         /// <summary>
+        /// Статус заявки.
+        /// </summary>
+        public OrderApplicationStatus Status { get; private set; }
+
+        #region Навигационные ключи
+
+        /// <summary>
         /// Идентификатор заказа.
         /// </summary>
         public Guid OrderId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public Orders? Order { get; private set; }
 
         /// <summary>
         /// Идентификатор исполнителя.
@@ -19,9 +31,11 @@ namespace Brigade.Domain.Entities
         public Guid PerformerId { get; private set; }
 
         /// <summary>
-        /// Статус заявки.
+        /// Навигационное свойство.
         /// </summary>
-        public OrderApplicationStatus Status { get; private set; }
+        public User? Performer { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="OrderApplication"/>.
@@ -46,5 +60,7 @@ namespace Brigade.Domain.Entities
             PerformerId = performerId;
             Status = status;
         }
+
+        private OrderApplication() { }
     }
 }

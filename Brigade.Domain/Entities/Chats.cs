@@ -12,6 +12,8 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public Guid Id { get; private set; }
 
+        #region Навигационные ключи
+
         /// <summary>
         /// Идентификатор заказа (не обязательно).
         /// </summary>
@@ -35,12 +37,14 @@ namespace Brigade.Domain.Entities
         /// <summary>
         /// Идентификатор второго участника чата.
         /// </summary>
-        public Guid SecondParticipantId {  get; private set; }
+        public Guid SecondParticipantId { get; private set; }
 
         /// <summary>
         /// Навигационное свойство.
         /// </summary>
         public User? SecondParticipant { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="Chats"/>.
@@ -48,7 +52,7 @@ namespace Brigade.Domain.Entities
         /// <param name="firstParticipantId"> Идентификатор первого участника. </param>
         /// <param name="secondParticipantId"> Идентификатор второго участника. </param>
         /// <param name="orderId"> Идентификатор заказа (не обязательно). </param>
-        public Chats(Guid firstParticipantId,  
+        public Chats(Guid firstParticipantId,
                      Guid secondParticipantId,
                      Guid? orderId = null)
         {
@@ -64,7 +68,9 @@ namespace Brigade.Domain.Entities
             Id = Guid.NewGuid();
             OrderId = orderId;
             FirstParticipantId = firstParticipantId;
-            SecondParticipant = secondParticipantId;
+            SecondParticipantId = secondParticipantId;
         }
+
+        private Chats() { }
     }
 }

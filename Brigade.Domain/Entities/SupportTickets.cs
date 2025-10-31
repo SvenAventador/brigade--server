@@ -15,11 +15,6 @@ namespace Brigade.Domain.Entities
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Идентификатор пользователя, создавшего заявку.
-        /// </summary>
-        public Guid UserId { get; private set; }
-
-        /// <summary>
         /// Тема заявки.
         /// </summary>
         public Name Subject { get; private set; }
@@ -33,6 +28,20 @@ namespace Brigade.Domain.Entities
         /// Статус заявки.
         /// </summary>
         public SupportStatus Status { get; private set; }
+
+        #region Навигационные ключи
+
+        /// <summary>
+        /// Идентификатор пользователя, создавшего заявку.
+        /// </summary>
+        public Guid UserId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public User? User { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="SupportTickets"/>.
@@ -58,5 +67,7 @@ namespace Brigade.Domain.Entities
             Description = description;
             Status = status;
         }
+
+        private SupportTickets() { }
     }
 }

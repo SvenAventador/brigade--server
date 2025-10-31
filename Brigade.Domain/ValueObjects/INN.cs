@@ -44,6 +44,8 @@ namespace Brigade.Domain.ValueObjects
             Value = inn.Trim();
         }
 
+        private INN() { }
+
         #region Переопределенные методы
 
         /// <summary>

@@ -8,9 +8,21 @@ namespace Brigade.Domain.Entities
     public class UserRole
     {
         /// <summary>
+        /// Проверка активности роли.
+        /// </summary>
+        public bool IsActive { get; private set; } = true;
+
+        #region Навигационные ключи
+
+        /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
         public Guid UserId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public User? User { get; private set; }
 
         /// <summary>
         /// Идентификатор роли.
@@ -18,9 +30,11 @@ namespace Brigade.Domain.Entities
         public Guid RoleId { get; private set; }
 
         /// <summary>
-        /// Проверка активности роли.
+        /// Навигационное свойство.
         /// </summary>
-        public bool IsActive { get; private set; } = true;
+        public Role? Role { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="UserRole"/>
@@ -53,5 +67,7 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public void Deactivate()
             => IsActive = false;
+
+        private UserRole() { }
     }
 }

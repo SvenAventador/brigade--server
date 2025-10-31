@@ -44,7 +44,7 @@ namespace Brigade.Domain.Entities
         /// <summary>
         /// Дата регистрации. По умолчанию: текущая дата.
         /// </summary>
-        public DateTime RegistrationDate { get; private set; } = DateTime.UtcNow;
+        public DateTime RegistrationDate { get; private set; }
 
         /// <summary>
         /// Дата последнего входа в систему.
@@ -90,7 +90,7 @@ namespace Brigade.Domain.Entities
         /// Создаёт новый экземпляр <see cref="User"/>
         /// </summary>
         /// <param name="email"> Электронная почта. </param>
-        /// <param name="hashPassword">Пароль в хешированном виде. </param>
+        /// <param name="hashPassword"> Пароль в хешированном виде. </param>
         /// <param name="fullName"> ФИО. </param>
         /// <param name="phone"> Номер телефона. </param>
         /// <param name="regionId"> Уникальный идентификатор региона, связанного с пользователем. </param>
@@ -119,6 +119,9 @@ namespace Brigade.Domain.Entities
             Phone = phone;
             PreferencesContact = preferencesContact;
             RegionId = regionId;
+            RegistrationDate = DateTime.UtcNow;
         }
+
+        private User() { }
     }
 }

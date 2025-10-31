@@ -14,21 +14,6 @@ namespace Brigade.Domain.Entities
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Идентификатор пользователя, оставившего отзыв (автор).
-        /// </summary>
-        public Guid AuthorId { get; private set; }
-
-        /// <summary>
-        /// Идентификатор пользователя, которому оставлен отзыв (цель).
-        /// </summary>
-        public Guid TargetId { get; private set; }
-
-        /// <summary>
-        /// Идентификатор заказа, к которому относится отзыв.
-        /// </summary>
-        public Guid OrderId { get; private set; }
-
-        /// <summary>
         /// Рейтинг, присвоенный в отзыве.
         /// </summary>
         public Rating Rating { get; private set; }
@@ -37,6 +22,31 @@ namespace Brigade.Domain.Entities
         /// Комментарий, оставленный в отзыве.
         /// </summary>
         public string Comment { get; private set; }
+
+        #region Навигационные ключи
+
+        /// <summary>
+        /// Идентификатор пользователя, оставившего отзыв (автор).
+        /// </summary>
+        public Guid AuthorId { get; private set; }
+
+        public User? Author { get; private set; }
+
+        /// <summary>
+        /// Идентификатор пользователя, которому оставлен отзыв (цель).
+        /// </summary>
+        public Guid TargetId { get; private set; }
+
+        public User? Target { get; private set; }
+
+        /// <summary>
+        /// Идентификатор заказа, к которому относится отзыв.
+        /// </summary>
+        public Guid OrderId { get; private set; }
+
+        public Orders? Order { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="Reviews"/>.
@@ -74,5 +84,7 @@ namespace Brigade.Domain.Entities
             Rating = rating;
             Comment = comment;
         }
+
+        private Reviews() { }
     }
 }

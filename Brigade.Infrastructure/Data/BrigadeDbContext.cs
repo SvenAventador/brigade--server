@@ -1,4 +1,5 @@
 ﻿using Brigade.Domain.Entities;
+using Brigade.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Brigade.Infrastructure.Data
@@ -27,5 +28,18 @@ namespace Brigade.Infrastructure.Data
 
         #endregion
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasPostgresEnum<RoleType>("role_type_enum");
+            modelBuilder.HasPostgresEnum<OrderApplicationStatus>("order_application_status_enum");
+            modelBuilder.HasPostgresEnum<OrderStatus>("order_status_enum");
+            modelBuilder.HasPostgresEnum<PreferencesContactMethod>("preferences_contact_method_enum");
+            modelBuilder.HasPostgresEnum<SupportStatus>("support_status_enum");
+            modelBuilder.HasPostgresEnum<TariffStatus>("tariff_status_enum");
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BrigadeDbContext).Assembly);
+        }
     }
 }

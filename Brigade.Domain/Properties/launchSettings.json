@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Brigade.Domain": {
+      "commandName": "Project"
+    },
+    "Профиль 1": {
+      "commandName": "Project"
+    }
+  }
+}

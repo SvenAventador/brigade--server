@@ -15,16 +15,6 @@ namespace Brigade.Domain.Entities
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Идентификатор заказчика, создавшего заказ.
-        /// </summary>
-        public Guid CustomerId { get; private set; }
-
-        /// <summary>
-        /// Идентификатор региона, к которому относится заказ.
-        /// </summary>
-        public Guid RegionId { get; private set; }
-
-        /// <summary>
         /// Наименование заказа.
         /// </summary>
         public Name Title { get; private set; }
@@ -44,7 +34,29 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public decimal Price { get; private set; }
 
-        public List<Chats> Chats = [];
+        #region Навигационные ключи
+
+        /// <summary>
+        /// Идентификатор заказчика, создавшего заказ.
+        /// </summary>
+        public Guid CustomerId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public User? Customer { get; private set; }
+
+        /// <summary>
+        /// Идентификатор региона, к которому относится заказ.
+        /// </summary>
+        public Guid RegionId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public Regions? Region { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="Orders"/>.
@@ -76,10 +88,12 @@ namespace Brigade.Domain.Entities
             Id = Guid.NewGuid();
             CustomerId = customerId;
             RegionId = regionId;
-            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Title = title;
             Description = description;
             Price = price;
             Status = status;
         }
+
+        private Orders() { }
     }
 }

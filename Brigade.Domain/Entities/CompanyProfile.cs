@@ -16,7 +16,7 @@ namespace Brigade.Domain.Entities
         /// <summary>
         /// Юридическое наименование компании.
         /// </summary>
-        public string LegalName { get; private set; } = null!;
+        public Name LegalName { get; private set; } = null!;
 
         /// <summary>
         /// ИНН компании.
@@ -28,11 +28,19 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public string? Description { get; private set; }
 
+        #region Навигационные ключи
+
         /// <summary>
         /// Идентификатор пользователя, которому принадлежит профиль.
         /// </summary>
         public Guid UserId { get; private set; }
 
+        /// <summary>
+        /// Навигационное свойство. 
+        /// </summary>
+        public User? User { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="CompanyProfile"/>.
@@ -41,7 +49,7 @@ namespace Brigade.Domain.Entities
         /// <param name="inn"> ИНН. </param>
         /// <param name="userId"> Идентификатор пользователя. </param>
         /// <param name="description"> Описание (необязательно). </param>
-        public CompanyProfile(string legalName, 
+        public CompanyProfile(Name legalName, 
                               INN inn, 
                               Guid userId, 
                               string? description = null)
@@ -59,5 +67,7 @@ namespace Brigade.Domain.Entities
             UserId = userId; 
             Description = description;
         }
+
+        private CompanyProfile() { }
     }
 }

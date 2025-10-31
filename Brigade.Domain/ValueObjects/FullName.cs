@@ -40,6 +40,8 @@ namespace Brigade.Domain.ValueObjects
             Value = fullName.Trim();
         }
 
+        private FullName() { }
+
         #region Переопределенные методы
 
         /// <summary>

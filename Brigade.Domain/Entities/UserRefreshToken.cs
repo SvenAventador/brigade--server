@@ -13,11 +13,6 @@ namespace Brigade.Domain.Entities
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Идентификатор пользователя, которому принадлежит токен.
-        /// </summary>
-        public Guid UserId { get; private set; }
-
-        /// <summary>
         /// Значение токена обновления.
         /// </summary>
         public string RefreshToken { get; private set; } 
@@ -47,6 +42,20 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public bool IsRevoked { get; private set; }
 
+        #region Навигационные ключи
+
+        /// <summary>
+        /// Идентификатор пользователя, которому принадлежит токен.
+        /// </summary>
+        public Guid UserId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public User? User { get; private set; }
+
+        #endregion
+
         /// <summary>
         /// Создаёт новый экземпляр <see cref="UserRefreshToken"/>.
         /// </summary>
@@ -75,5 +84,7 @@ namespace Brigade.Domain.Entities
             IsExpires = isExpires;
             IsRevoked = isRevoked;
         }
+
+        private UserRefreshToken() { }
     }
 }

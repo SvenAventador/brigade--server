@@ -11,7 +11,7 @@ namespace Brigade.Domain.ValueObjects
         /// <summary>
         /// Регулярное выражение для валидации мобильного телефона.
         /// </summary>
-        private static readonly Regex PhoneRegex = new Regex(
+        private static readonly Regex PhoneRegex = new(
             @"^[\+]?[0-9]{1,4}?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,4}$",
             RegexOptions.Compiled
         );
@@ -37,6 +37,8 @@ namespace Brigade.Domain.ValueObjects
 
             Value = phone.Trim().ToLowerInvariant();
         }
+
+        private Phone() { }
 
         #region Переопределенные методы
 

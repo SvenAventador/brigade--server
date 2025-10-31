@@ -19,5 +19,20 @@
         /// Максимальное значение рейтинга на заказ.
         /// </summary>
         public const int MAX_RATING_VALUE = 5;
+
+        /// <summary>
+        /// Длина для ИНН.
+        /// </summary>
+        public const int INN_LENGTH = 11;
+
+        /// <summary>
+        /// Максимальная длина почты.
+        /// </summary>
+        public const int MAX_EMAIL_LENGHT = 255;
+
+        /// <summary>
+        /// Максимальная длина телефона.
+        /// </summary>
+        public const int MAX_PHONE_LENGHT = 18;
     }
 }

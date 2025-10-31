@@ -15,16 +15,6 @@ namespace Brigade.Domain.Entities
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Идентификатор пользователя, оформившего подписку.
-        /// </summary>
-        public Guid UserId { get; private set; }
-
-        /// <summary>
-        /// Идентификатор тарифа.
-        /// </summary>
-        public Guid TariffId { get; private set; }
-
-        /// <summary>
         /// Сумма оплаты за тариф.
         /// </summary>
         public decimal Amount { get; private set; }
@@ -37,7 +27,31 @@ namespace Brigade.Domain.Entities
         /// <summary>
         /// Период действия подписки.
         /// </summary>
-        public ValidityPeriod ValidityPeriod { get; private set; } 
+        public ValidityPeriod ValidityPeriod { get; private set; }
+
+        #region Навигационные ключи
+
+        /// <summary>
+        /// Идентификатор пользователя, оформившего подписку.
+        /// </summary>
+        public Guid UserId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public User? User { get; private set; }
+
+        /// <summary>
+        /// Идентификатор тарифа.
+        /// </summary>
+        public Guid TariffId { get; private set; }
+
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public Tariffs? Tariff { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// Создаёт новый экземпляр <see cref="UserTariffs"/>.
@@ -72,5 +86,7 @@ namespace Brigade.Domain.Entities
             ValidityPeriod = validityPeriod;
             Status = status; 
         }
+
+        private UserTariffs() { }   
     }
 }
