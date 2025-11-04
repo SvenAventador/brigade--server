@@ -17,6 +17,12 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public RoleType Type { get; private set; }
 
+        // Добавь это свойство
+        /// <summary>
+        /// Навигационное свойство. Коллекция связей UserRole для этой роли.
+        /// </summary>
+        public ICollection<UserRole> UserRoles { get; private set; } = [];
+
         /// <summary>
         /// Создаёт новый экземпляр <see cref="Role"/>
         /// </summary>

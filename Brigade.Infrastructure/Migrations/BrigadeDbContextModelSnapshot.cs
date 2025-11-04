@@ -23,8 +23,8 @@ namespace Brigade.Infrastructure.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "order_application_status_enum", "order_application_status", new[] { "pending", "accepted", "rejected", "cancelled" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "order_status_enum", "order_status", new[] { "open", "assigned", "in_progress", "completed", "cancelled" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "preferences_contact_method_enum", "preferences_contact_method", new[] { "telegram", "whats_app", "phone", "email" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "role_type_enum", "role_type", new[] { "customer", "company", "performer" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "support_status_enum", "support_status", new[] { "open", "in_progress", "resolved", "clodes", "pending_user_response" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "role_type_enum", "role_type", new[] { "customer", "company", "performer", "support" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "support_status_enum", "support_status", new[] { "open", "in_progress", "resolved", "closed", "pending_user_response" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "tariff_status_enum", "tariff_status", new[] { "active", "inactive", "expired", "cancelled", "pending_payment" });
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
@@ -127,7 +127,7 @@ namespace Brigade.Infrastructure.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("order_application_status_enum")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Status");
 
                     b.HasKey("OrderId", "PerformerId");
@@ -162,7 +162,7 @@ namespace Brigade.Infrastructure.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("order_status_enum")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Status");
 
                     b.HasKey("Id");
@@ -228,8 +228,9 @@ namespace Brigade.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("Id");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("role_type_enum")
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
                         .HasColumnName("Type");
 
                     b.HasKey("Id");
@@ -250,7 +251,7 @@ namespace Brigade.Infrastructure.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("support_status_enum")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Status");
 
                     b.Property<Guid>("UserId")
@@ -413,7 +414,7 @@ namespace Brigade.Infrastructure.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("tariff_status_enum")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Status");
 
                     b.Property<Guid>("TariffId")
@@ -815,13 +816,13 @@ namespace Brigade.Infrastructure.Migrations
             modelBuilder.Entity("Brigade.Domain.Entities.UserRole", b =>
                 {
                     b.HasOne("Brigade.Domain.Entities.Role", "Role")
-                        .WithMany()
+                        .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Brigade.Domain.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -872,6 +873,16 @@ namespace Brigade.Infrastructure.Migrations
 
                     b.Navigation("ValidityPeriod")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Brigade.Domain.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Brigade.Domain.Entities.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

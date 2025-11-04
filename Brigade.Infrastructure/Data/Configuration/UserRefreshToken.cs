@@ -5,7 +5,7 @@ namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.UserRefreshToken"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'UserRefreshToken' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class UserRefreshToken : IEntityTypeConfiguration<Domain.Entities.UserRefreshToken>

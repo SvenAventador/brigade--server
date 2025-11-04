@@ -1,5 +1,4 @@
 ﻿using Brigade.Domain.Constants;
-using Brigade.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,7 +6,7 @@ namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.User"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'User' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class User : IEntityTypeConfiguration<Domain.Entities.User>
@@ -31,7 +30,7 @@ namespace Brigade.Infrastructure.Data.Configuration
                 ownedNavigationBuilder.Property(p => p.Value) 
                                       .HasColumnName("Email") 
                                       .IsRequired()
-                                      .HasMaxLength(Consts.MAX_EMAIL_LENGHT); 
+                                      .HasMaxLength(Consts.MAX_EMAIL_LENGTH); 
             });
 
             builder.Property(e => e.HashPassword)
@@ -51,7 +50,7 @@ namespace Brigade.Infrastructure.Data.Configuration
                 ownedNavigationBuilder.Property(p => p.Value) 
                                       .HasColumnName("Phone") 
                                       .IsRequired()
-                                      .HasMaxLength(Consts.MAX_PHONE_LENGHT); 
+                                      .HasMaxLength(Consts.MAX_PHONE_LENGTH); 
             });
 
             builder.Property(e => e.PreferencesContact)

@@ -6,7 +6,7 @@ namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.SupportTickets"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'SupportTickets' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class SupportTickets : IEntityTypeConfiguration<Domain.Entities.SupportTickets>
@@ -39,9 +39,9 @@ namespace Brigade.Infrastructure.Data.Configuration
 
             builder.Property(e => e.Status)
                    .HasColumnName("Status")
+                   .HasColumnType("TEXT")
                    .HasConversion<string>()
-                   .HasColumnType("support_status_enum")
-                   .IsRequired(); 
+                   .IsRequired();
 
             builder.Property(e => e.UserId)
                    .HasColumnName("UserId")

@@ -5,7 +5,7 @@ namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.UserRole"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'UserRole' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class UserRole : IEntityTypeConfiguration<Domain.Entities.UserRole>
@@ -36,12 +36,12 @@ namespace Brigade.Infrastructure.Data.Configuration
                    .IsRequired(); 
 
             builder.HasOne(e => e.User) 
-                   .WithMany() 
+                   .WithMany(u => u.UserRoles) 
                    .HasForeignKey(e => e.UserId)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.Role)
-                   .WithMany() 
+                   .WithMany(u => u.UserRoles) 
                    .HasForeignKey(e => e.RoleId)
                    .OnDelete(DeleteBehavior.Restrict);
         }

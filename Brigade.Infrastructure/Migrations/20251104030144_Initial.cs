@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Brigade.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,8 @@ namespace Brigade.Infrastructure.Migrations
                 .Annotation("Npgsql:Enum:order_application_status_enum", "pending,accepted,rejected,cancelled")
                 .Annotation("Npgsql:Enum:order_status_enum", "open,assigned,in_progress,completed,cancelled")
                 .Annotation("Npgsql:Enum:preferences_contact_method_enum", "telegram,whats_app,phone,email")
-                .Annotation("Npgsql:Enum:role_type_enum", "customer,company,performer")
-                .Annotation("Npgsql:Enum:support_status_enum", "open,in_progress,resolved,clodes,pending_user_response")
+                .Annotation("Npgsql:Enum:role_type_enum", "customer,company,performer,support")
+                .Annotation("Npgsql:Enum:support_status_enum", "open,in_progress,resolved,closed,pending_user_response")
                 .Annotation("Npgsql:Enum:tariff_status_enum", "active,inactive,expired,cancelled,pending_payment");
 
             migrationBuilder.CreateTable(
@@ -36,7 +36,7 @@ namespace Brigade.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Type = table.Column<int>(type: "role_type_enum", nullable: false)
+                    Type = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,7 +114,7 @@ namespace Brigade.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Status = table.Column<string>(type: "order_status_enum", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
                     RegionId = table.Column<Guid>(type: "uuid", nullable: false)
@@ -143,7 +143,7 @@ namespace Brigade.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Subject = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Status = table.Column<string>(type: "support_status_enum", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
@@ -212,7 +212,7 @@ namespace Brigade.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Amount = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
-                    Status = table.Column<string>(type: "tariff_status_enum", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
                     StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -273,7 +273,7 @@ namespace Brigade.Infrastructure.Migrations
                 {
                     OrderId = table.Column<Guid>(type: "uuid", nullable: false),
                     PerformerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Status = table.Column<string>(type: "order_application_status_enum", nullable: false)
+                    Status = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

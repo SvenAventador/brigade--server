@@ -28,11 +28,16 @@
         /// <summary>
         /// Максимальная длина почты.
         /// </summary>
-        public const int MAX_EMAIL_LENGHT = 255;
+        public const int MAX_EMAIL_LENGTH = 255;
 
         /// <summary>
         /// Максимальная длина телефона.
         /// </summary>
-        public const int MAX_PHONE_LENGHT = 18;
+        public const int MAX_PHONE_LENGTH = 18;
+
+        /// <summary>
+        /// Минимальная длина пароля.
+        /// </summary>
+        public const int MIN_PASSWORD_LENGTH = 8;
     }
 }

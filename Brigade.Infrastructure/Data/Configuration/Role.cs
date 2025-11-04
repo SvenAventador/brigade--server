@@ -5,7 +5,7 @@ namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.Reviews"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'Reviews' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class Role : IEntityTypeConfiguration<Domain.Entities.Role>
@@ -26,7 +26,8 @@ namespace Brigade.Infrastructure.Data.Configuration
 
             builder.Property(e => e.Type)
                    .HasColumnName("Type")
-                   .HasColumnType("role_type_enum")
+                   .HasColumnType("TEXT")
+                   .HasConversion<string>()
                    .IsRequired(); 
         }
     }

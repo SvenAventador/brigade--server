@@ -8,16 +8,21 @@
         /// <summary>
         /// Заказчик.
         /// </summary>
-        Customer, 
+        customer, 
 
         /// <summary>
         /// Компания.
         /// </summary>
-        Company,
+        company,
 
         /// <summary>
         /// Исполнитель.
         /// </summary>
-        Performer
+        performer,
+
+        /// <summary>
+        /// Поддержка.
+        /// </summary>
+        support
     }
 }

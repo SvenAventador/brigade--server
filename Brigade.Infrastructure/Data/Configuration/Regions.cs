@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
-    /// Конфигурация сущности <see cref="Domain.Entities.Regionsё"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Конфигурация сущности <see cref="Domain.Entities.Regions"/> для Entity Framework Core.
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'Regions' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class Regions : IEntityTypeConfiguration<Domain.Entities.Regions>

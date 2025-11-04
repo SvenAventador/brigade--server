@@ -5,7 +5,7 @@ namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.UserTariffs"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'UserTariffs' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class UserTariffs : IEntityTypeConfiguration<Domain.Entities.UserTariffs>
@@ -31,9 +31,9 @@ namespace Brigade.Infrastructure.Data.Configuration
 
             builder.Property(e => e.Status)
                    .HasColumnName("Status")
+                   .HasColumnType("TEXT")
                    .HasConversion<string>()
-                   .HasColumnType("tariff_status_enum")
-                   .IsRequired(); 
+                   .IsRequired();
 
             builder.OwnsOne(e => e.ValidityPeriod, ownedNavigationBuilder =>
             {

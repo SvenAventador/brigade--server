@@ -1,13 +1,12 @@
 ﻿using Brigade.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Brigade.Infrastructure.Data.Configuration
 {
     /// <summary>
     /// Конфигурация сущности <see cref="Domain.Entities.OrderApplication"/> для Entity Framework Core.
-    /// Определяет сопоставление свойств сущности с колонками таблицы 'Chats' в базе данных,
+    /// Определяет сопоставление свойств сущности с колонками таблицы 'OrderApplication' в базе данных,
     /// включая первичный ключ, внешние ключи, связи и типы данных.
     /// </summary>
     public class OrderApplication : IEntityTypeConfiguration<Domain.Entities.OrderApplication>
@@ -27,9 +26,9 @@ namespace Brigade.Infrastructure.Data.Configuration
 
             builder.Property(e => e.Status)
                    .HasColumnName("Status")
+                   .HasColumnType("TEXT")
                    .HasConversion<string>()
-                   .HasColumnType("order_application_status_enum")
-                   .IsRequired(); 
+                   .IsRequired();
 
             builder.HasOne(e => e.Order) 
                   .WithMany() 

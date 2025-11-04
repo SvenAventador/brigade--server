@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brigade.Domain.Enums
+﻿namespace Brigade.Domain.Enums
 {
     /// <summary>
     /// Перечисление статутов обращений в службу поддержки.
@@ -29,7 +23,7 @@ namespace Brigade.Domain.Enums
         /// <summary>
         /// Закрыт.
         /// </summary>
-        Clodes,
+        Closed,
 
         /// <summary>
         /// Ожидает ответа от пользователя.
