@@ -39,5 +39,10 @@
         /// Минимальная длина пароля.
         /// </summary>
         public const int MIN_PASSWORD_LENGTH = 8;
+
+        /// <summary>
+        /// Жизненный цикл refresh токена в днях.
+        /// </summary>
+        public const int REFRESH_TOKEN_EXPIRES= 7;
     }
 }

@@ -52,7 +52,7 @@ namespace Brigade.Infrastructure.Data.Configuration
                    .IsRequired(); 
 
             builder.HasOne(e => e.User) 
-                   .WithMany()
+                   .WithMany(e => e.UserRefreshToken)
                    .HasForeignKey(e => e.UserId)
                    .OnDelete(DeleteBehavior.Restrict); 
         }

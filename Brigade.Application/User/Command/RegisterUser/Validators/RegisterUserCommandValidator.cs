@@ -82,6 +82,11 @@ namespace Brigade.Application.User.Command.RegisterUser.Validators
             });
         }
 
+        /// <summary>
+        /// Проверяет, является ли строка валидным GUID.
+        /// </summary>
+        /// <param name="guid"> Значение для валидации. </param>
+        /// <returns> <see langword="true"/> - если Guid валиден, иначе - <see langword="false" />. </returns>
         private bool BeAValidGuid(string guid)
             => Guid.TryParse(guid, out _);
     }

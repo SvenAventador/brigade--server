@@ -1,4 +1,5 @@
-﻿using Brigade.Application.User.Command.RegisterUser;
+﻿using Brigade.Application.User.Command.AuthUser.Validator;
+using Brigade.Application.User.Command.RegisterUser;
 using Brigade.Application.User.Command.RegisterUser.Validators;
 using Brigade.Application.User.Services;
 using Brigade.Domain.Repositories;
@@ -38,20 +39,23 @@ namespace Brigade.Api.Controllers
         {
             var validationResult = await _validator.ValidateAsync(command);
             if (!validationResult.IsValid)
-                return BadRequest(new { 
-                    errors = validationResult.Errors 
+                return BadRequest(new
+                {
+                    errors = validationResult.Errors
                 });
 
             var result = await _userRegistrationService.RegisterAsync(command);
             if (!result.IsSuccess)
-                return BadRequest(new { 
-                    message = result.Errors 
+                return BadRequest(new
+                {
+                    message = result.Errors
                 });
 
             await _unitOfWork.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Register), new { 
-                id = result.Value 
+            return CreatedAtAction(nameof(Register), new
+            {
+                id = result.Value
             }, result.Value);
         }
     }

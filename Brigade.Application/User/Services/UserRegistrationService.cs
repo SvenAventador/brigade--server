@@ -20,6 +20,15 @@ namespace Brigade.Application.User.Services
         private readonly IPasswordHasherService _passwordHasherService;
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Создаёт новый экземпляр <see cref="UserAuthService"/>.
+        /// </summary>
+        /// <param name="userRepository"> Репозиторий пользователей. </param>
+        /// <param name="roleRepository"> Репозиторий ролей. </param>
+        /// <param name="userRoleRepository"> Репозиторий связей пользователь-роль. </param>
+        /// <param name="companyProfileRepository"> Репозиторий профиля компаний. </param>
+        /// <param name="passwordHasherService"> Сервис хеширования паролей. </param>
+        /// <param name="unitOfWork"> Единица работы для управления транзакциями. </param>
         public UserRegistrationService(
             IUserRepository userRepository,
             IRoleRepository roleRepository,

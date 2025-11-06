@@ -1,3 +1,4 @@
+using Brigade.Application.User.Command.AuthUser.Validator;
 using Brigade.Application.User.Command.RegisterUser.Validators;
 using Brigade.Application.User.Services;
 using Brigade.Domain.Repositories;
@@ -14,20 +15,40 @@ builder.Services.AddDbContext<BrigadeDbContext>(options =>
     b => b.MigrationsAssembly("Brigade.Infrastructure"))
 );
 
-#region Регистрация интерфейсов (Dependency Injection)
+#region Регистрация Unit of Work 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+#endregion
+
+#region Регистрация репозиториев 
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<ICompanyProfileRepository, CompanyProfileRepository>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+builder.Services.AddScoped<IUserRefreshTokenRepository, UserRefreshTokenRepository>();
+
+#endregion
+
+#region Регистрация сервисов 
 
 builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+
+#endregion
+
+#region Регистрация Application Services 
 
 builder.Services.AddScoped<UserRegistrationService>();
+builder.Services.AddScoped<UserAuthService>();
+
+#endregion
+
+#region Регистрация FluentValidation валидаторов 
 
 builder.Services.AddScoped<RegisterUserCommandValidator>();
+builder.Services.AddScoped<AuthUserCommandValidator>();
 
 #endregion
 

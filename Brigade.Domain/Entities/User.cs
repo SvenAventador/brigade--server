@@ -89,6 +89,11 @@ namespace Brigade.Domain.Entities
         /// </summary>
         public ICollection<UserRole> UserRoles { get; private set; } = [];
 
+        /// <summary>
+        /// Навигационное свойство.
+        /// </summary>
+        public ICollection<UserRefreshToken> UserRefreshToken { get; private set; } = [];
+
         #endregion
 
         /// <summary>

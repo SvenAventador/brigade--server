@@ -86,5 +86,31 @@ namespace Brigade.Domain.Entities
         }
 
         private UserRefreshToken() { }
+
+        #region Метод для работы с сущностью UserRefreshToken
+
+        /// <summary>
+        /// Отзыв токена авторизации.
+        /// </summary>
+        public void RevokeToken()
+        {
+            if (IsRevoked)
+                throw new RefreshTokenInvalidException("Refresh token is already revoked.");
+
+            RevokedAt = DateTime.UtcNow;
+            IsRevoked = true;
+            ExpiresAt = DateTime.UtcNow.AddDays(-1);
+        }
+
+        /// <summary>
+        /// Проверка доступности токена.
+        /// </summary>
+        /// <returns> <see langword="true" /> если токен доступен, 
+        /// иначе <see langword="false"/> 
+        /// </returns>
+        public bool IsExpired() 
+            => ExpiresAt <= DateTime.UtcNow;
+
+        #endregion
     }
 }

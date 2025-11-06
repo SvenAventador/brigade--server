@@ -35,6 +35,19 @@ namespace Brigade.Infrastructure.Repositories
         /// </returns>
         public async Task<Role?> GetByTypeAsync(RoleType type, CancellationToken cancellationToken = default)
             => await _context.Roles 
-                             .FirstOrDefaultAsync(x => x.Type == type, cancellationToken);
+                             .FirstOrDefaultAsync(x => x.Type.ToString() == type.ToString(), cancellationToken);
+
+        /// <summary>
+        /// Асинхронно получает роль по её идентификатору из базы данных.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли. </param>
+        /// <param name="cancellationToken"> Токен отмены операции. </param>
+        /// <returns>
+        /// Экземпляр <see cref="Role"/>, если роль с указанным идентификатором найдена;
+        /// в противном случае — <see langword="null"/>.
+        /// </returns>
+        public async Task<Role?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+            => await _context.Roles
+                             .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
     }
 }

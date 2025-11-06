@@ -1,6 +1,7 @@
 ﻿using Brigade.Domain.Entities;
 using Brigade.Domain.Repositories;
 using Brigade.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Brigade.Infrastructure.Repositories
 {
@@ -37,6 +38,18 @@ namespace Brigade.Infrastructure.Repositories
             ArgumentNullException.ThrowIfNull(userRole);
 
             await _context.UserRoles.AddAsync(userRole, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<UserRole>?> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken = default)
+        {
+            if (userId == Guid.Empty)
+                return null;
+
+            return await _context.UserRoles
+                                 .Include(ur => ur.Role) 
+                                 .Where(ur => ur.UserId == userId)
+                                 .ToListAsync(cancellationToken);
         }
     }
 }

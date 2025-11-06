@@ -62,4 +62,16 @@
         /// </returns>
         public bool IsFailure => !IsSuccess;
     }
+
+    /// <summary>
+    /// Представляет тип, который не содержит данных.
+    /// Аналог <see langword="System.Void" />, но может использоваться как обобщённый тип T в Result<T>.
+    /// </summary>
+    public readonly struct Unit
+    {
+        /// <summary>
+        /// Получает экземпляр <see cref="Unit"/>.
+        /// </summary>
+        public static Unit Value { get; } = new(); 
+    }
 }
